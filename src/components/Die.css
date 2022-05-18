@@ -2,8 +2,7 @@
   
     font-size: 10em;
     font-weight: bold;
-    color: rgb(28, 192, 50);
-   
+    color: #b520d3;
     padding: 0.25em;
 }
 .shaking{
@@ -12,17 +11,21 @@
   background-color: aquall;
 }
 @keyframes wobble{
- from{
-     transform: translate3d(0,0,0);
- }
- 15%{
-    transform: translate3d(-25%,0,0) rotate3d(0,0,1,-5deg) ;
- }
- 30%{
-     transform: translate3d(20%,0,0) rotate3d(0,0,1,3deg) ;
- }
- 45%{
-     transform: translate3d(-15%,0,0) rotate3d(0,0,1,-3deg) ;
+    from{
+        transform: translate3d(0,0,0);
+        color: #000;
+    }
+    15%{
+        transform: translate3d(-25%,0,0) rotate3d(0,0,1,-5deg) ;
+        color: rgb(216, 37, 37);
+    }
+    30%{
+        transform: translate3d(20%,0,0) rotate3d(0,0,1,3deg) ;
+        color: rgb(58, 160, 17);
+    }
+    45%{
+        transform: translate3d(-15%,0,0) rotate3d(0,0,1,-3deg) ;
+        color: rgb(67, 17, 160);
  }
   60%{
     transform: translate3d(10%,0,0) rotate3d(0,0,1,2deg) ;
