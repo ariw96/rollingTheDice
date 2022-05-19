@@ -23,24 +23,29 @@ const RollDice = ({sides})=>{
         const score1 = Object.values(newDie1)
         const score2 = Object.values(newDie2)
         const score=score1[0]+score2[0] 
-        setState((prevState)=>({
-            ...prevState,
+        setState({
             die1:Object.keys(newDie2),
             die2:Object.keys(newDie1),
             rolling:true,
             totalScore:score,
-        }));
+            playerScore1:curPlayer==="player1"?playerScore1+score:playerScore1,
+            playerScore2:curPlayer==="player2"?playerScore2+score:playerScore2,
+            curPlayer:curPlayer,
+        });
         
         setTimeout(()=>{
             setState((prevState)=>({
                 ...prevState,
                 rolling:false,
-                playerScore1:curPlayer==="player1"?playerScore1+score:playerScore1,
-                playerScore2:curPlayer==="player2"?playerScore2+score:playerScore2,
-                curPlayer:curPlayer==="player1"?"player2":"player1",
             }))
         },1000);
     };
+    const hold = ()=>{
+        setState((prevState)=>({ 
+            ...prevState,
+            curPlayer:curPlayer==="player1"?"player2":"player1",
+        }));
+    }
     return (
         <>
        
@@ -54,11 +59,14 @@ const RollDice = ({sides})=>{
              <Button onClick={roll} disabled={rolling}>
                  {rolling ? "Rolling..." : "Roll Dice"}
              </Button>
-             <h2>Total Score:{totalScore}</h2>
+             <Button onClick={hold}>
+                 {"Hold"}
+             </Button>
+             <h2>Rolled Score:{totalScore}</h2>
          </div>
         </>
     );
-}
+    };  
 RollDice.defaultProps = {
     sides:[
         {one:1},

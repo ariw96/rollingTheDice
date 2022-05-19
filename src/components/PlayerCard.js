@@ -6,7 +6,7 @@ export default function PlayerCard({playerScore}) {
 
   return (
 <Card >
-<Card.Body>
+<Card.Body >
 <Card.Title className='d-flex justify-content-between align-baseline fw-normal mb-3' >
     <div className='me-2'>
   <h1>ARI</h1>

@@ -11,7 +11,7 @@ return (
 
 <div style={{
   display: 'grid',
-  gridTemplateColumns: 'repeat(auto-fit, minmax(25rem, 1fr))',
+  gridTemplateColumns: 'repeat(auto-fit, minmax(30rem, 1fr))',
   gap: '5rem',
   alignItems: 'flex-start',
 }}>
