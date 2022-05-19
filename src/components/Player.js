@@ -15,8 +15,8 @@ return (
   gap: '5rem',
   alignItems: 'flex-start',
 }}>
-<PlayerCard  playerScore={playerScore1} ></PlayerCard>
-<PlayerCard   playerScore={playerScore2}  ></PlayerCard>
+<PlayerCard  playerScore={playerScore1} playerName="Ari"></PlayerCard>
+<PlayerCard   playerScore={playerScore2}  playerName="Hilel"></PlayerCard>
 </div>
 </Container>
 )

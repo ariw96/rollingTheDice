@@ -3,7 +3,7 @@ import Die from "./Die";
 import Player from "./Player";
 import PlayerCard from "./PlayerCard";
 import "./RollDice.css";
-import {Button } from 'react-bootstrap';
+import {Button ,Stack} from 'react-bootstrap';
 
 
 const RollDice = ({sides})=>{
@@ -56,13 +56,20 @@ const RollDice = ({sides})=>{
             <Die face={String(die1)} rolling={rolling} />
             <Die face={String(die2)} rolling={rolling}  />
              </div>
+             <Stack  gap="2" className="mt-4">
+
              <Button onClick={roll} disabled={rolling}>
                  {rolling ? "Rolling..." : "Roll Dice"}
              </Button>
-             <Button onClick={hold}>
+            
+              <Button onClick={hold}>
                  {"Hold"}
              </Button>
-             <h2>Rolled Score:{totalScore}</h2>
+              <Button >
+                  Score:{totalScore}
+             </Button>
+             </Stack>
+          
          </div>
         </>
     );
