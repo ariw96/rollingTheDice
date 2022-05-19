@@ -31,3 +31,18 @@ align-self: center;
    color: rgb(67, 64, 66);
     font-weight: bold;
 }
+.winner{
+  height: 100vh;
+  width: 100vw;
+   font: sans-serif;
+   color: rgb(245, 238, 243);
+    font-weight: bold;
+    background-image: url("https://media.giphy.com/media/3o7bu0ZxQXZqQQqQiQ/giphy.gif");
+}
+.winner div{
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+}

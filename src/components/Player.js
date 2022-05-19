@@ -19,7 +19,7 @@ return (
   alignItems: 'flex-start',
 }}>
 <PlayerCard roundScore={roundScore1} playerScore={playerScore1} playerName="Ari" lastScore={lastScore1} winScore={winScore} bgColor={bgColor1}></PlayerCard>
-<PlayerCard  roundScore={roundScore2} playerScore={playerScore2}  playerName="Hilel" lastScore={lastScore2} bgColor={bgColor2}></PlayerCard>
+<PlayerCard  roundScore={roundScore2} playerScore={playerScore2}  playerName="Hilel" lastScore={lastScore2} winScore={winScore} bgColor={bgColor2}></PlayerCard>
 </div>
 </Container>
 )

@@ -36,7 +36,7 @@ const RollDice = ({sides})=>{
         const score2 = Object.values(newDie2)
         const score=score1[0]+score2[0] 
         const double = (score1[0]===score2[0])?true:false;
-        if (score>10){
+        if (score>11){
             switchPlayer();
             return <div>{`${curPlayer} rolled a ${score}`}</div>
         }
@@ -109,12 +109,27 @@ const RollDice = ({sides})=>{
     const getRoundScore2 = (score,roundScore1,isDouble)=>{
     return isDouble?roundScore1+=score*2:roundScore1+=score;
     }
-  
+  if(playerScore1>=winScore){
+      return <body className="winner">
+          <div>
+          <h1>player1 is the winner</h1>
+          <Button variant="primary" onClick={()=>{window.location.reload()}}>Play Again</Button>
+          </div>
+      </body>
+  }
+  if(playerScore2>=winScore){
+      return <body className="winner">
+            <div>
+          <h1>player2 is the winner</h1>
+          <Button variant="primary" size="lg" onClick={()=>{window.location.reload()}}>Play Again</Button>
+            </div>
+      </body>
+  }
     return (
         <>
        
         <Player playerScore1={playerScore1} roundScore1={roundScore1} roundScore2={roundScore2} playerScore2={playerScore2} lastScore1={lastScore1} lastScore2={lastScore2} winScore={winScore} bgColor1={bgColor1} bgColor2={bgColor2} />
-         <div className="roll-dice">
+         <body className="roll-dice">
             <div className="rolldice-container">
             <Die face={String(die1)} rolling={rolling} />
             <Die face={String(die2)} rolling={rolling}  />
@@ -134,7 +149,7 @@ const RollDice = ({sides})=>{
              </Button >
                </Stack>
           
-         </div>
+         </body>
         </>
     );
     };  
