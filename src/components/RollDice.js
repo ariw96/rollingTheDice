@@ -7,6 +7,10 @@ import {Button ,Stack,Form} from 'react-bootstrap';
 
 
 const RollDice = ({sides})=>{
+    const [winScore, setValue] = useState(20);
+    const onChange = (event) => {
+        setValue(event.target.value);
+    };
     const [state,setState] = useState({
         die1:"one",
         die2:"three",
@@ -24,11 +28,6 @@ const RollDice = ({sides})=>{
         bgColor2:"",
         isDouble:false,
     });
-    const [winScore, setValue] = useState(50);
-    
-    const onChange = (event) => {
-        setValue(event.target.value);
-    };
     const {die1,die2,rolling,lastScore,roundScore1,roundScore2,isDouble,playerScore1,curPlayer,playerScore2,lastScore1,lastScore2,bgColor1,bgColor2} = state;
     const roll = ()=>{
         const  newDie1 = sides[Math.floor(Math.random()*6)+1];
@@ -37,7 +36,11 @@ const RollDice = ({sides})=>{
         const score2 = Object.values(newDie2)
         const score=score1[0]+score2[0] 
         const double = (score1[0]===score2[0])?true:false;
-
+        if (score>10){
+            switchPlayer();
+            return <div>{`${curPlayer} rolled a ${score}`}</div>
+        }
+     
         setState({
             die1:Object.keys(newDie2),
             die2:Object.keys(newDie1),
@@ -75,24 +78,41 @@ const RollDice = ({sides})=>{
             lastScore2:0,
         }));
     }
-    const getScore1 = (score,playerScore1,isDouble,roundScore1)=>{
-        if (score>11) return (playerScore1-roundScore1)
+    
+   const switchPlayer = ()=>{
+        setState((prevState)=>({
+            ...prevState,
+            curPlayer:curPlayer==="player1"?"player2":"player1",
+            bgColor1:curPlayer==="player1"?"":"bg-primary",
+            bgColor2:curPlayer==="player2"?"":"bg-primary",
+            playerScore1:playerScore1-roundScore1,
+            playerScore2:playerScore2-roundScore2, 
+            lastScore1:0,
+            lastScore2:0,
+        }));
+        setState((prevState)=>({
+            ...prevState,
+            roundScore1:0,  
+            roundScore2:0, 
+        }));
+    }
+
+    const getScore1 = (score,playerScore1,isDouble)=>{  
         return   isDouble?playerScore1+=score*2:playerScore1+=score;
     }
     const getScore2 = (score,playerScore2,isDouble)=>{
-        if (score>8) return (playerScore2-roundScore2)
-     return isDouble?playerScore2+=score*2:playerScore2+=score;
+        return isDouble?playerScore2+=score*2:playerScore2+=score;
     }
     const getRoundScore1 = (score,roundScore1,isDouble)=>{
-    return isDouble?roundScore1+=score*2:roundScore1+=score;
+        return isDouble?roundScore1+=score*2:roundScore1+=score;
     }
     const getRoundScore2 = (score,roundScore1,isDouble)=>{
     return isDouble?roundScore1+=score*2:roundScore1+=score;
     }
+  
     return (
         <>
        
-    
         <Player playerScore1={playerScore1} roundScore1={roundScore1} roundScore2={roundScore2} playerScore2={playerScore2} lastScore1={lastScore1} lastScore2={lastScore2} winScore={winScore} bgColor1={bgColor1} bgColor2={bgColor2} />
          <div className="roll-dice">
             <div className="rolldice-container">
